@@ -21,7 +21,7 @@ const client = new MongoClient(url);
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
-app.get('/devices', (req, res) => {
+app.get('/corona_stories', (req, res) => {
 
     // Stating the constants needed
     const db = client.db(dbName);
@@ -33,7 +33,7 @@ app.get('/devices', (req, res) => {
     collection.find({}).toArray(async function (err, cases_list) {
         assert.equal(err, null);
         let cases = await cases_list;
-        res.render('index.ejs', { 'devices': cases })
+        res.render('index.ejs', { 'stories': cases })
     });
 })
 

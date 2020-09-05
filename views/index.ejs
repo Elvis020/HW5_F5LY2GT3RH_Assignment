@@ -8,14 +8,15 @@
 </head>
 <body>
     <div class="outer-guard">
-        <% devices.forEach(function(device){ %>
+        <% stories.forEach(function(story){ %>
             <div class="spacey-card">
-                <h4>Countries: <%= device.Combined_Key %> 😻  </h4>
+                <h4>Countries: <%= story.Combined_Key %> 😻  </h4>
                 <ul>
-                    <li>Active Cases ⚔ : <%= device.Active %></li> 
-                    <li>Recoveries 🏥 : <%= device.Recovered %></li> 
-                    <li>No. of Deaths 🏴‍☠️ : <%= device.Deaths %></li> 
-                </ul>
+                    <li>Confirmed Cases 🙊 : <%= story.Confirmed %></li> 
+                    <li>Active Cases ⚔ : <%= story.Active %></li> 
+                    <li>Recoveries 🏥 : <%= story.Recovered %></li> 
+                    <li>No. of Deaths 🏴‍☠️ : <%= story.Deaths %></li> 
+                </ul>  
             </div>
         <% }); %>
         </div>

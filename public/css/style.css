@@ -20,7 +20,7 @@ body {
 }
 
 .outer-guard{
-    width: 85vw;
+    width: 90vw;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
