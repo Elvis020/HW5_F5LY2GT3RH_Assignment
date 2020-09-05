@@ -1,43 +1,59 @@
-const Express = require("express");
-const BodyParser = require("body-parser");
-const MongoClient = require("mongodb").MongoClient;
-// const ObjectId = require("mongodb").ObjectID;
 
 
-const CONNECTION_URL = "mongodb+srv://cluster0.aaetk.mongodb.net/COVID_CASES?retryWrites=true";
-const DATABASE_NAME = "COVID_CASES";
-var collection = "covid_19_data"
+// With Mongo CLient
+
+const express = require('express')
+const app = express()
+const port = 4000;
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
 
 
-var app = Express();
 
-app.use(BodyParser.json());
-app.use(BodyParser.urlencoded({ extended: true }));
-
-let database;
+const url = "mongodb+srv://elvis:elvis@cluster0.aaetk.mongodb.net/COVID_CASES";
 
 
-app.get("/corona", (request, response) => {
-    // Collection is not defined
-    collection.find({}).toArray((error, result) => {
-        if (error) {
-            return response.status(500).send(error);
-        }
-        console.log(result);
-        response.send(result);
+// DB Name
+const dbName = 'COVID_CASES';
+
+// Creating new MongoClient
+const client = new MongoClient(url);
+
+app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
+app.get('/devices', (req, res) => {
+
+    // Stating the constants needed
+    const db = client.db(dbName);
+    const collection = db.collection('covid_19_data');
+
+
+
+    // Finding all the cases
+    collection.find({}).toArray(async function (err, cases_list) {
+        assert.equal(err, null);
+        let cases = await cases_list;
+        res.render('index.ejs', { 'devices': cases })
     });
+})
 
-});
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
 
-app.listen(4000, () => {
-    MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, async (error, client) => {
-        if (error) {
-            throw error;
-        }
-        database = await client.db(DATABASE_NAME);
-        collection = await database.collection("covid_19_data");
-        console.log("Connected to `" + DATABASE_NAME + "`!");
-    });
-});
+
+
+// Connecting to server
+client.connect(function (err) {
+    assert.equal(null, err);
+    console.log('====================================');
+    console.log('Connected successfully to DB😐 ');
+    console.log('====================================');
+
+    app.listen(port, () => {
+        console.log(`Server is running at http://localhost:${port}`)
+    })
+})
+
 
 

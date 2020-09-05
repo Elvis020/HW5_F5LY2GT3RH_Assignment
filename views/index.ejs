@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="outer-guard">
+        <% devices.forEach(function(device){ %>
+            <div class="spacey-card">
+                <h4>Countries: <%= device.Combined_Key %> 😻  </h4>
+                <ul>
+                    <li>Active Cases ⚔ : <%= device.Active %></li> 
+                    <li>Recoveries 🏥 : <%= device.Recovered %></li> 
+                    <li>No. of Deaths 🏴‍☠️ : <%= device.Deaths %></li> 
+                </ul>
+            </div>
+        <% }); %>
+        </div>
+
+    <!-- <ul>
+        <% devices.forEach(function(device){ %>
+          <li><%= device.Combined_Key %></li>
+        <% }); %>
+    </ul> -->
+    <!-- <% devices.forEach(function(device){ %>
+        <div class="spacey">
+            <div class="card">
+                <h1><%= device.Combined_Key %></h1>
+                <div class="card__content">
+                </div>
+            </div>
+            
+            <% }); %> -->
+</body>
+</html>

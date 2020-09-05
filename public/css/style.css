@@ -1,0 +1,32 @@
+
+body {
+    font-family: PT Sans;
+}
+
+.spacey-card{
+    display: flex;
+    flex-direction: column;
+    background-color: #69ecab;
+    border: 1px solid grey;
+    text-align: left;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform 0.25s ease-out;
+
+}
+
+.outer-guard{
+    width: 85vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px ;
+}
+
+h4{
+    text-align: center;
+}
